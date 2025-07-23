@@ -91,22 +91,44 @@ export const getProduct = async (req, res) => {
 };
 
 // Create new product
+
+
+const buildImages = async (files) => {
+  const primary = files.primary?.[0]
+    ? await uploadToCloudinary(files.primary[0])
+    : undefined;
+
+  const gallery = files.gallery
+    ? await Promise.all(files.gallery.map(uploadToCloudinary))
+    : [];
+
+  const technical = files.technical
+    ? await Promise.all(files.technical.map(uploadToCloudinary))
+    : [];
+
+  const roomScenes = files.roomScenes
+    ? await Promise.all(files.roomScenes.map(uploadToCloudinary))
+    : [];
+
+  return { primary, gallery, technical, roomScenes };
+};
+
 export const createProduct = async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ success: false, message: 'Validation failed', errors: errors.array() });
 
     const files = req.files;
-    const buildImages = () => ({
-      primary: files.primary?.[0] ? { url: files.primary[0].path, public_id: files.primary[0].filename } : undefined,
-      gallery: files.gallery?.map(f => ({ url: f.path, public_id: f.filename })),
-      technical: files.technical?.map(f => ({ url: f.path, public_id: f.filename })),
-      roomScenes: files.roomScenes?.map(f => ({ url: f.path, public_id: f.filename }))
-    });
+    
+    console.log( req.files);
 
+    const images = await buildImages(files);
+
+    console.log(  images);
+    console.log( "isFiles available ", files!= undefined)
     const product = new Product({
       ...req.body,
-      images: buildImages(),
+      images,
       dynamicAttributes: req.body.dynamicAttributes || []
     });
 
@@ -152,6 +174,8 @@ export const updateProduct = async (req, res) => {
           : files[field].map(f => ({ url: f.path, public_id: f.filename }));
       }
     };
+
+
     for (const f of ['primary', 'gallery', 'technical', 'roomScenes']) await replaceField(f);
 
     // Merge other fields
@@ -173,6 +197,7 @@ export const updateProduct = async (req, res) => {
 // Soft delete product (hide from frontend without deleting images)
 export const deleteProduct = async (req, res) => {
   try {
+
     const { id } = req.params;
     const product = await Product.findById(id);
     if (!product) return res.status(404).json({ success: false, message: 'Product not found' });

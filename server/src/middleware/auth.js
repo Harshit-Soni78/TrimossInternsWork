@@ -24,7 +24,7 @@ export const auth = async (req, res, next) => {
     }
     console.log( JSON.stringify(user));
     req.user = user;
-    cons
+    console.log( "success full authorized");
     next();
   } catch (error) {
     console.error('Auth middleware error:', error);

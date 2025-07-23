@@ -5,17 +5,11 @@ import image8 from "../assets/images/image-8.jpg";
 
 export default function HandMirrorPage() {
   const [selectedType, setSelectedType] = useState("Type 1");
-<<<<<<< HEAD
-  const [price, setPrice] = useState("200");
-  const types = ["Type 1", "Type 2", "Type 3", "TYPE 4"];
-  const navigate = useNavigate();
-=======
   const [price, setPrice] = useState(1000);
   const [currency, setCurrency] = useState("USD");
   const navigate = useNavigate();
 
   const types = ["Type 1", "Type 2", "Type 3", "TYPE 4"];
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
 
   return (
     <div className="min-h-screen bg-white text-black font-sans relative px-4 sm:px-6 md:px-10 py-6 md:py-8">
@@ -39,12 +33,8 @@ export default function HandMirrorPage() {
         </svg>
       </div>
 
-<<<<<<< HEAD
-      <div className="grid grid-cols-1 md:grid-cols-[120px_1fr_1fr_1fr] gap-6 md:gap-8 max-w-7xl mx-auto mt-2 md:mt-12">
-=======
       <div className="grid grid-cols-1 md:grid-cols-[120px_1fr_1fr_1fr] gap-6 md:gap-8 max-w-7xl mx-auto mt-4 md:mt-12">
         {/* Side Type Selector */}
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
         <div className="mt-2 md:mt-12 flex md:block justify-center gap-4 sm:gap-6">
           <ul className="flex md:flex-col space-x-4 md:space-x-0 md:space-y-4 text-sm">
             {types.map((type) => (
@@ -63,10 +53,7 @@ export default function HandMirrorPage() {
           </ul>
         </div>
 
-<<<<<<< HEAD
-=======
         {/* Product Details */}
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
         <div className="max-w-prose">
           <h2 className="font-semibold mb-4 text-base sm:text-lg">Details</h2>
           <p className="text-sm text-gray-700 leading-relaxed">
@@ -76,10 +63,7 @@ export default function HandMirrorPage() {
           </p>
         </div>
 
-<<<<<<< HEAD
-=======
         {/* Product Image */}
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
         <div className="flex justify-center items-center">
           <img
             src={image8}
@@ -88,10 +72,7 @@ export default function HandMirrorPage() {
           />
         </div>
 
-<<<<<<< HEAD
-=======
         {/* Purchase Section */}
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
         <div>
           <h2 className="text-base sm:text-lg font-semibold mb-2">
             HandMirror
@@ -100,13 +81,9 @@ export default function HandMirrorPage() {
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
           </p>
-<<<<<<< HEAD
-          <p className="text-md mb-4 font-medium">${price}</p>
-=======
           <p className="text-md mb-4 font-medium">
             {price} {currency}
           </p>
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
 
           <div className="relative w-full max-w-[130px] mb-4">
             <select className="appearance-none w-full border border-gray-300 px-4 py-2 pr-8 rounded text-sm">
@@ -122,15 +99,11 @@ export default function HandMirrorPage() {
           </button>
 
           <button
-<<<<<<< HEAD
-            onClick={() => navigate("/address")}
-=======
             onClick={() =>
               navigate("/address", {
                 state: { price, currency },
               })
             }
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
             className="w-full bg-[#B8956A] text-[#350000] py-2 my-2 rounded hover:bg-[#bb8c57]"
           >
             BUY NOW
@@ -138,10 +111,7 @@ export default function HandMirrorPage() {
         </div>
       </div>
 
-<<<<<<< HEAD
-=======
       {/* Navigation Arrows */}
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
       <div className="hidden md:flex justify-between absolute bottom-6 left-6 right-6">
         <div className="w-8 h-8 border rounded-md flex items-center justify-center cursor-pointer hover:bg-gray-100">
           <ChevronLeft className="w-5 h-5" />

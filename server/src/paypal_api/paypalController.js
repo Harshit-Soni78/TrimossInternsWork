@@ -1,13 +1,9 @@
 // paypal_api/controllers/paypalController.js
 import Order from "../models/Order.js";
 import axios from "axios";
-<<<<<<< HEAD
-const base = "https://api-m.sandbox.paypal.com";
-=======
 
 const base = "https://api-m.sandbox.paypal.com";
 
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
 export const capturePayPalPayment = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -32,11 +28,7 @@ export const capturePayPalPayment = async (req, res) => {
       payerId,
       emailAddress,
       name: `${givenName} ${surname}`,
-<<<<<<< HEAD
-      paidAt: paidAt || updateTime || new Date(),
-=======
       paidAt: paidAt || update_time || new Date(),
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
     };
 
     if (status === "COMPLETED") {
@@ -54,11 +46,8 @@ export const createPayPalOrder = async (req, res) => {
   try {
     // validate amount
     const amountValue = parseFloat(req.body.amount);
-<<<<<<< HEAD
-=======
     console.log( req.body.currency);
     const currencyCode = req.body.currency;
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
     if (isNaN(amountValue)) {
       return res.status(400).json({
         success: false,

@@ -33,6 +33,8 @@ export default function SignupPage() {
   };
 
   const validateForm = () => {
+
+    console.log( formData.confirmPassword);
     const newErrors = {};
     if (!formData.username.trim()) newErrors.username = "Username is required";
     if (!formData.password.trim()) newErrors.password = "Password is required";
@@ -45,8 +47,10 @@ export default function SignupPage() {
   };
 
   const handleSubmit = async (e) => {
+    console.log( "button is pressed");
     e.preventDefault();
     const newErrors = validateForm();
+    console.log( newErrors);
     if (Object.keys(newErrors).length === 0) {
       try {
         const response = await axios.post(`${API_BASE}/users/register`, {
@@ -178,6 +182,8 @@ export default function SignupPage() {
                       type={showConfirmPassword ? "text" : "password"}
                       name="confirmPassword"
                       placeholder="Confirm"
+                      value={formData.confirmPassword}
+                      onChange = {handleInputChange}
                       className="w-full pl-10 pr-10 py-3 bg-gray-100 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:bg-white transition-all duration-200"
                     />
                     <button

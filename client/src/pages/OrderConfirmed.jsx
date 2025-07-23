@@ -9,26 +9,15 @@ export default function OrderConfirmed() {
   const orderDetails = state?.orderDetails;
   const shippingCost = state?.shippingCost || 0;
   const totalAmount = state?.totalAmount || 0;
-<<<<<<< HEAD
-
-  const recipient = orderDetails?.recipient;
-  const orderDate = new Date().toLocaleDateString();
-
-=======
   const paymentMethod = state?.paymentMethod || "";
   const currency = state?.currency;
   const recipient = orderDetails?.recipient;
   const orderDate = new Date().toLocaleDateString();
 
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
   const downloadInvoice = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
     doc.text("Invoice", 14, 20);
-<<<<<<< HEAD
-
-=======
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
     doc.setFontSize(12);
     doc.text(`Order Date: ${orderDate}`, 14, 35);
     doc.text(`Recipient: ${recipient?.name}`, 14, 45);
@@ -39,36 +28,18 @@ export default function OrderConfirmed() {
       { maxWidth: 180 }
     );
     doc.text(`Phone: ${recipient?.phone}`, 14, 65);
-<<<<<<< HEAD
-    doc.text(
-      `Product Price: $${(totalAmount - shippingCost).toFixed(2)}`,
-      14,
-      80
-    );
-    doc.text(`Shipping Cost: $${shippingCost.toFixed(2)}`, 14, 90);
-    doc.setFont("helvetica", "bold");
-    doc.text(`Total Paid: $${totalAmount.toFixed(2)}`, 14, 105);
-
-=======
     doc.text(`Product Price: ${(totalAmount - shippingCost).toFixed(2)} ${currency}`, 14, 80);
     doc.text(`Shipping Cost: ${shippingCost.toFixed(2)} ${currency}`, 14, 90);
     doc.text(`Payment Method: ${paymentMethod}`, 14, 120);
     doc.setFont("helvetica", "bold");
     doc.text(`Total Paid: ${totalAmount.toFixed(2)} ${currency}`, 14, 105);
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
     doc.save(`Invoice_${orderDate.replace(/\//g, "-")}.pdf`);
   };
 
   if (!state) {
     return (
       <div className="bg-white py-16 px-6 text-center">
-<<<<<<< HEAD
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">
-          No order found
-        </h2>
-=======
         <h2 className="text-2xl font-bold text-gray-800 mb-4">No order found</h2>
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
         <p className="text-gray-500 mb-6">
           Please complete a purchase before visiting this page.
         </p>
@@ -86,35 +57,6 @@ export default function OrderConfirmed() {
     <div className="bg-amber-50 min-h-screen px-4 md:px-6 lg:px-8">
       <section className="bg-white py-10 antialiased rounded-md shadow-sm max-w-3xl mx-auto mt-10">
         <div className="px-4 md:px-8">
-<<<<<<< HEAD
-          <h2 className="text-xl font-semibold text-gray-900 sm:text-2xl mb-2">
-            Thanks for your order!
-          </h2>
-          <p className="text-gray-500 mb-6 text-sm sm:text-base">
-            Your order has been successfully placed and will be processed within
-            24 hours during working days. We will notify you by email once it
-            has been shipped.
-          </p>
-
-          <div className="space-y-4 sm:space-y-2 rounded-lg border border-gray-200 bg-gray-50 p-4 sm:p-6 mb-6">
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Date</dt>
-              <dd className="text-gray-900 font-medium">{orderDate}</dd>
-            </dl>
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Payment Method</dt>
-              <dd className="text-gray-900 font-medium">PayPal</dd>
-            </dl>
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Name</dt>
-              <dd className="text-gray-900 font-medium">
-                {recipient?.name || "N/A"}
-              </dd>
-            </dl>
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Shipping Address</dt>
-              <dd className="text-gray-900 font-medium">
-=======
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl mb-2">
             Thanks for your order!
           </h2>
@@ -143,30 +85,11 @@ export default function OrderConfirmed() {
             <dl className="sm:flex items-center justify-between gap-4">
               <dt className="text-gray-500 dark:text-gray-400">Shipping Address</dt>
               <dd className="text-gray-900 dark:text-white font-medium sm:text-end">
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
                 {recipient?.address?.street}, {recipient?.address?.city},{" "}
                 {recipient?.address?.state}, {recipient?.address?.postalCode},{" "}
                 {recipient?.address?.countryCode}
               </dd>
             </dl>
-<<<<<<< HEAD
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Phone</dt>
-              <dd className="text-gray-900 font-medium">
-                {recipient?.phone || "N/A"}
-              </dd>
-            </dl>
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Shipping Cost</dt>
-              <dd className="text-gray-900 font-medium">
-                ${shippingCost.toFixed(2)}
-              </dd>
-            </dl>
-            <dl className="flex flex-col sm:flex-row justify-between">
-              <dt className="text-gray-500">Total Paid</dt>
-              <dd className="text-green-700 font-semibold">
-                ${totalAmount.toFixed(2)}
-=======
             <dl className="sm:flex items-center justify-between gap-4">
               <dt className="text-gray-500 dark:text-gray-400">Phone</dt>
               <dd className="text-gray-900 dark:text-white font-medium sm:text-end">
@@ -183,7 +106,6 @@ export default function OrderConfirmed() {
               <dt className="text-gray-500 dark:text-gray-400">Total Paid</dt>
               <dd className="text-green-700 dark:text-green-400 font-semibold sm:text-end">
                 {totalAmount.toFixed(2)} {currency}
->>>>>>> 94cc5fe703341e7e671d68578a0b03dbb031bc59
               </dd>
             </dl>
           </div>
